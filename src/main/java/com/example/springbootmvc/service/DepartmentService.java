@@ -22,7 +22,7 @@ public class DepartmentService {
 
     public ApiResponse add(DepartmentDTO departmentDTO) {
         Optional<Company> optionalCompany = companyRepository.findById(departmentDTO.getCompanyId());
-        if (optionalCompany.isEmpty()) return new ApiResponse("There is no such id", false);
+        if (!optionalCompany.isPresent()) return new ApiResponse("There is no such id", false);
         Company company = optionalCompany.get();
 
         Department department = new Department();
